@@ -1,5 +1,6 @@
 import AgoraRTC from "agora-rtc-sdk-ng"
 import { useEffect, useState } from "react";
+import { VideoPlayer } from "../VideoPlayer/VideoPlayer";
 
 const APP_ID = '84a475b5e6264529bce54a13cf38a2cc';
 const TOKEN = '007eJxTYPAzUJBeX5GyZWpm0J0F0w9+kBLY1DtlzgTG+80XWRYfL/JSYLAwSTQxN00yTTUzMjMxNbJMSk41NUk0NE5OM7ZINEpOviuRldkQyMhw95MWAyMUgvh8DD6ZZakKxSVFqYm5mXnpDAwAlAEjhQ==';
@@ -34,11 +35,12 @@ export const VideoRoom = () => {
                 client.publish(tracks);
             })
     }, [])
-    return <div><h2>Video Room</h2>
-        {users.map((user: any) => (
-            <div key={user.uid}>
-                {user.uid}
-            </div>
-        ))}
-    </div>
+    return (
+        <div>
+            <h2>Video Room</h2>
+            {users.map((user: any) => (
+                <VideoPlayer key={user.uid} user={user} />
+            ))}
+        </div>
+    )
 }
