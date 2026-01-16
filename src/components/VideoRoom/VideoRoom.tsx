@@ -14,14 +14,25 @@ const client = AgoraRTC.createClient({
 export const VideoRoom = () => {
     const [users, setUsers] = useState<any>([]);
 
-    const handleUserJoined = (user: any, mediaType: any) => {
-        console.log('user-joined', user, mediaType);
+    console.log("users", users);
+
+    const handleUserJoined = async (user: any, mediaType: any) => {
+        console.log("user-joined", user, mediaType);
+        await client.subscribe(user, mediaType);
+        if (mediaType === 'video') {
+            setUsers((previousUsers: any) => [...previousUsers, user]);
+        }
+        if (mediaType === 'audio') {
+            user.audioTrack?.play();
+        }
     }
+
     const handleUserLeft = (user: any) => {
-        console.log('user-left', user);
+        setUsers((previousUsers: any) => previousUsers.filter((u: any) => u.uid !== user.uid));
     }
+
     useEffect(() => {
-        client.on('user-joined', handleUserJoined)
+        client.on('user-published', handleUserJoined);
         client.on('user-left', handleUserLeft);
 
         client
