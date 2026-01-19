@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { VideoRoom } from "./components/VideoRoom/VideoRoom";
+import './App.css'
 
 function App() {
   const [isJoined, setIsJoined] = useState(false);

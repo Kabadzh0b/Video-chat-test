@@ -1,9 +1,10 @@
 import AgoraRTC from "agora-rtc-sdk-ng"
 import { useEffect, useState } from "react";
-import { VideoPlayer } from "../VideoPlayer/VideoPlayer";
+import { VideoRow } from "../VideoRow/VideoRow";
+import "./VideoRoom.css";
 
 const APP_ID = '84a475b5e6264529bce54a13cf38a2cc';
-const TOKEN = '007eJxTYPAzUJBeX5GyZWpm0J0F0w9+kBLY1DtlzgTG+80XWRYfL/JSYLAwSTQxN00yTTUzMjMxNbJMSk41NUk0NE5OM7ZINEpOviuRldkQyMhw95MWAyMUgvh8DD6ZZakKxSVFqYm5mXnpDAwAlAEjhQ==';
+const TOKEN = '007eJxTYOCoPOLIVfW1m0/yw4UfCv1f0t1flxZkyHh1zjZ18brb+EyBwcIk0cTcNMk01czIzMTUyDIpOdXUJNHQODnN2CLRKDn57fvczIZARgajlxGMjAwQCOLzMfhklqUqFJcUpSbmZualMzAAAKYHI9o=';
 const CHANNEL = 'Live streaming';
 
 const client = AgoraRTC.createClient({
@@ -31,6 +32,18 @@ export const VideoRoom = () => {
         setUsers((previousUsers: any) => previousUsers.filter((u: any) => u.uid !== user.uid));
     }
 
+    const getVideoRows = () => {
+        const videoRows = [];
+
+        for (let i = 0; i < users.length; i += 2) {
+            videoRows.push(users.slice(i, i + 2));
+        }
+
+        return videoRows;
+    }
+
+    const videoRows = getVideoRows();
+
     useEffect(() => {
         client.on('user-published', handleUserJoined);
         client.on('user-left', handleUserLeft);
@@ -47,10 +60,9 @@ export const VideoRoom = () => {
             })
     }, [])
     return (
-        <div>
-            <h2>Video Room</h2>
-            {users.map((user: any) => (
-                <VideoPlayer key={user.uid} user={user} />
+        <div className="video-room">
+            {videoRows.map((row: any) => (
+                <VideoRow users={row} />
             ))}
         </div>
     )

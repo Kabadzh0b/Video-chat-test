@@ -7,7 +7,7 @@ export const VideoPlayer = ({ user }: { user: any }) => {
         user.videoTrack?.play(ref.current);
     }, []);
     return (
-        <div>
+        <div className="video-room-player">
             <h2>Video Player</h2>
             <p>User ID: {user.uid}</p>
             <div ref={ref} style={{ width: '200px', height: '200px'}}></div>
