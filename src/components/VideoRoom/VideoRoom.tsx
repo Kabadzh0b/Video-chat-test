@@ -4,7 +4,7 @@ import { VideoRow } from "../VideoRow/VideoRow";
 import "./VideoRoom.css";
 
 const APP_ID = '84a475b5e6264529bce54a13cf38a2cc';
-const TOKEN = '007eJxTYOCoPOLIVfW1m0/yw4UfCv1f0t1flxZkyHh1zjZ18brb+EyBwcIk0cTcNMk01czIzMTUyDIpOdXUJNHQODnN2CLRKDn57fvczIZARgajlxGMjAwQCOLzMfhklqUqFJcUpSbmZualMzAAAKYHI9o=';
+const TOKEN = '007eJxTYMiyY3l3LbVxymK3zBN3dp7878ebm9u+coGT+uHtp1cxTvuvwGBhkmhibppkmmpmZGZiamSZlJxqapJoaJycZmyRaJScHOqZn9kQyMhw+rIpAyMUgvh8DD6ZZakKxSVFqYm5mXnpDAwAKG0kzg==';
 const CHANNEL = 'Live streaming';
 
 const client = AgoraRTC.createClient({
