@@ -28,6 +28,19 @@ export const VideoRoom = () => {
         }
     }
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setUsers((previousUsers: any) => [...previousUsers, {
+                uid: `DEN DAUN ${Math.floor(Math.random() * 1000)}`,
+                audioTrack: null,
+                videoTrack: null,
+                name: `DEN DAUN ${Math.floor(Math.random() * 1000)}`,
+            }])
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, [])
+
     const handleUserLeft = (user: any) => {
         setUsers((previousUsers: any) => previousUsers.filter((u: any) => u.uid !== user.uid));
     }
