@@ -15,8 +15,6 @@ const client = AgoraRTC.createClient({
 export const VideoRoom = () => {
     const [users, setUsers] = useState<any>([]);
 
-    console.log("users", users);
-
     const handleUserJoined = async (user: any, mediaType: any) => {
         console.log("user-joined", user, mediaType);
         await client.subscribe(user, mediaType);
@@ -30,13 +28,8 @@ export const VideoRoom = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setUsers((previousUsers: any) => [...previousUsers, {
-                uid: `DEN DAUN ${Math.floor(Math.random() * 1000)}`,
-                audioTrack: null,
-                videoTrack: null,
-                name: `DEN DAUN ${Math.floor(Math.random() * 1000)}`,
-            }])
-        }, 10000);
+            setUsers((previousUsers: any) => [...previousUsers, ...previousUsers]);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, [])
