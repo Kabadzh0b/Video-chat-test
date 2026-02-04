@@ -26,14 +26,6 @@ export const VideoRoom = () => {
         }
     }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setUsers((previousUsers: any) => [...previousUsers, ...previousUsers]);
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [])
-
     const handleUserLeft = (user: any) => {
         setUsers((previousUsers: any) => previousUsers.filter((u: any) => u.uid !== user.uid));
     }
